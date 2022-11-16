@@ -1,0 +1,37 @@
+创建CS脚本，自动增加以下标题内容方法：
+
+1.找到Unity安装目录：D:\Unity2018.4.12f1\Unity\Editor\Data\Resources\ScriptTemplates
+
+2.打开该目录下的文件：81-C# Script-NewBehaviourScript.cs.txt
+
+3.在该文件头部增加以下内容：
+// ================================================================================
+//
+//      作者  :   #AuthorName#
+//      类名  :   #SCRIPTNAME#
+//      时间  :   #CreateTime#
+//      目的  :   
+//
+// ================================================================================
+
+4.保存文件
+
+5.新建一个CS脚本，内容如下：
+using System;
+using System.IO;
+
+public class SetCSTemplate : UnityEditor.AssetModificationProcessor
+{
+    private static void OnWillCreateAsset(string path)
+    {
+        path = path.Replace(".meta", "");
+        if (path.EndsWith(".cs"))
+        {
+            string allText = File.ReadAllText(path);
+            allText = allText.Replace("#AuthorName#", "G Q").Replace("#CreateTime#", DateTime.Now.ToString("F"));
+            File.WriteAllText(path, allText);
+        }
+    }
+}
+
+6.至此，完成该需求
