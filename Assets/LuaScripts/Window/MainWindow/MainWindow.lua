@@ -13,7 +13,7 @@ function MainWindow:New()
 end
 
 function MainWindow:OnInit()
-    self.__super.OnInit(self)
+    self:Super().OnInit(self)
 end
 
 function MainWindow:InitEvent()
@@ -28,7 +28,7 @@ function MainWindow:OnShowing()
     self:InitEvent()
     self:InitInfo()
 
-    self.__super.OnShowing(self)
+    self:Super().OnShowing(self)
 end
 
 function MainWindow:InitInfo()
@@ -48,7 +48,7 @@ function MainWindow:ClickBtnClose()
 end
 
 function MainWindow:OnClose()
-    self.__super.OnClose(self)
+    self:Super().OnClose(self)
 end
 
 return MainWindow

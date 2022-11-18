@@ -4,7 +4,7 @@
 --- DateTime: 2022/11/18 16:27
 ---
 
--- UI父节点
+--- @field UIRoot Transform UI父节点
 _G.UIRoot = GameObject.Find("UICanvas").transform
 
 -- 销毁

@@ -4,8 +4,8 @@
 --- DateTime: 2022/11/10 10:29
 ---
 
---- @class BaseEvent
-local BaseEvent = Class.CreateClass("BaseEvent")
+--- @class BaseEvent : Object
+local BaseEvent = Class.CreateClass("BaseEvent", "Object")
 
 function BaseEvent:New()
     -- 存储的所有Unity事件（按钮等）注册列表
@@ -43,12 +43,16 @@ function BaseEvent:RemoveEvent(eventID, callback)
 end
 
 --- ClearEvent 清理事件
-function BaseEvent:ClearEvent()
+function BaseEvent:ClearUnityEvent()
     for event, _ in pairs(self.unityEventList) do
         event:RemoveAllListeners()
         event:Invoke()
     end
     self.unityEventList = {}
+end
+
+function BaseEvent:ClearEvent()
+    -- TODO GQ 这里需要把通过 self:AddEvent 注册的事件记录下来，当界面关闭（生命周期结束）的时候，需要清理事件
 end
 
 return BaseEvent

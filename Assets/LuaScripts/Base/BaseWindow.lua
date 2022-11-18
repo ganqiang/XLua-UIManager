@@ -5,8 +5,6 @@
 ---
 
 --- @class BaseWindow : GameObject
---- @field protected __super BaseWindow 父类
---- @field protected __className BaseWindow 类名
 --- @field protected windowType BaseWindow 窗口类型（子类必须赋值）
 --- @field protected prefabPath BaseWindow 预制体路径（子类必须赋值）
 local BaseWindow = Class.CreateClass("BaseWindow", "GameObject")
@@ -45,11 +43,6 @@ end
 --- @param layer number 层级数值
 function BaseWindow:SetUILayerValue(layer)
     self.layerValue = layer
-end
-
---- ClassName 获得类名
-function BaseWindow:ClassName()
-    return self.__className
 end
 
 --- GetPrefabName 获得预制体名字
@@ -200,6 +193,7 @@ function BaseWindow:_OnDispose()
     self.active = false
     self.isDestroy = true
 
+    self:ClearUnityEvent()
     self:ClearEvent()
     self:ClearGameObject()
 end

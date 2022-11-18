@@ -13,7 +13,7 @@ function TestWindow1:New()
 end
 
 function TestWindow1:OnInit()
-    self.__super.OnInit(self)
+    self:Super().OnInit(self)
 end
 
 function TestWindow1:InitEvent()
@@ -26,7 +26,7 @@ end
 
 function TestWindow1:OnShowing()
     self:InitEvent()
-    self.__super.OnShowing(self)
+    self:Super().OnShowing(self)
 end
 
 function TestWindow1:ClickBtnOpen()
@@ -38,11 +38,11 @@ function TestWindow1:ClickBtnClose()
 end
 
 function TestWindow1:OnHide()
-    self.__super.OnHide(self)
+    self:Super().OnHide(self)
 end
 
 function TestWindow1:OnClose()
-    self.__super.OnClose(self)
+    self:Super().OnClose(self)
 end
 
 return TestWindow1

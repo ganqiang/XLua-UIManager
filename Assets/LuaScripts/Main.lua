@@ -17,13 +17,16 @@ end
 
 InitRequire()
 
+--- Unity Awake
 function OnAwake()
-    LogError("按下 Q 进入框架，且可开始断点调试")
+    LogError("按下 Q 键进入框架，且可开始断点调试")
 end
 
+--- Unity Start
 function OnStart()
 end
 
+--- Unity Update
 function OnUpdate()
     --LogError("OnUpdate")
 
@@ -32,19 +35,22 @@ function OnUpdate()
     end
 end
 
+--- Unity FixedUpdate
 function OnFixedUpdate()
     --LogError("OnFixedUpdate")
 end
 
+--- Unity LateUpdate
 function OnLateUpdate()
     --LogError("OnLateUpdate")
 end
 
---- 在此处做游戏退出时的数据清理操作
+--- Unity OnDestroy 在此处做游戏退出时的数据清理操作
 function OnDestroy()
     --LogError("OnDestroy")
 
     UIManager.Clear()
+    EventManager.ClearEvent()
 end
 
 return Main
