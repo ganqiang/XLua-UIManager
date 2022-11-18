@@ -18,6 +18,16 @@ function GameObject:SetObj(prefab)
     self:BindUIElements()
 end
 
+--- BindUIElements 绑定UIElement（做到Lua端可以直接self.uiElements.xxx直接拿到Unity组件）
+function GameObject:BindUIElements()
+    local elements = self.uiElements
+    if (HUtils.IsEmpty(elements)) then
+        elements = {}
+        self.uiElements = elements
+        UIElement.TryBind(self.gameObject, elements)
+    end
+end
+
 --- SetSprite 设置 Sprite 图片
 --- @param image Image Image组件
 --- @param atlasPath string 图集路径
@@ -43,16 +53,6 @@ function GameObject:SetTexture(rawImage, textureName, bNativeSize)
     end
 
     rawImage:SetTexture(textureName, bNativeSize)
-end
-
---- BindUIElements 绑定UIElement（做到Lua端可以直接self.uiElements.xxx直接拿到Unity组件）
-function GameObject:BindUIElements()
-    local elements = self.uiElements
-    if (HUtils.IsEmpty(elements)) then
-        elements = {}
-        self.uiElements = elements
-        UIElement.TryBind(self.gameObject, elements)
-    end
 end
 
 --- ClearGameObject 清理游戏物体

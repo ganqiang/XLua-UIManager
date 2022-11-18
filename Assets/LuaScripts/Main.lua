@@ -6,7 +6,7 @@
 
 package.cpath = package.cpath .. ';C:/Users/gan.qiang/.IntelliJIdea2018.3/config/plugins/intellij-emmylua/classes/debugger/emmy/windows/x64/?.dll'
 local dbg = require('emmy_core')
-dbg.tcpListen('localhost', 9967)
+dbg.tcpListen('localhost', 9970)
 
 Main = {}
 

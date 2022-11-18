@@ -30,6 +30,18 @@ function TestWindow3:InitEvent()
 
     self:AddListener(self.btnOpen.onClick, self.ClickBtnOpen)
     self:AddListener(self.btnClose.onClick, self.ClickBtnClose)
+
+    self:AddListener(self.uiElements.btnSendEvent.onClick, function ()
+        EventManager.DispatchEvent(EventID.TestEventId1, "Hello World!!")
+    end)
+
+    --self:AddEvent(EventID.TestEventId1, function (args)
+    --    self.uiElements.title.text = args
+    --end)
+
+    EventManager.AddEvent(EventID.TestEventId1, function(args, a)
+        self.uiElements.title.text = a
+    end, self)
 end
 
 function TestWindow3:InitData()

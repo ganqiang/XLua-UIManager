@@ -8,16 +8,16 @@
 local BaseEvent = Class.CreateClass("BaseEvent")
 
 function BaseEvent:New()
-    -- 存储的所有事件注册列表
-    self.eventList = {}
+    -- 存储的所有Unity事件（按钮等）注册列表
+    self.unityEventList = {}
 end
 
 --- AddListener 监听按钮事件
 --- @param event Event 按钮onClick事件
 --- @param callback function 按钮点击事件回调
 function BaseEvent:AddListener(event, callback)
-    if (not self.eventList[event]) then
-        self.eventList[event]= {}
+    if (not self.unityEventList[event]) then
+        self.unityEventList[event]= {}
     end
 
     event:RemoveAllListeners()
@@ -28,13 +28,27 @@ function BaseEvent:AddListener(event, callback)
     end)
 end
 
+--- AddEvent 注册事件
+--- @param eventID EventID 事件ID
+--- @param callback function 回调（写法尽量以 self:AddEvent(eventId, self.XXX) 的方式，如果用匿名函数，那么匿名函数的第一个参数为self自身）
+function BaseEvent:AddEvent(eventID, callback)
+    EventManager.AddEvent(eventID, callback, self)
+end
+
+--- RemoveEvent 移除事件
+--- @param eventID EventID 事件ID
+--- @param callback function 回调（写法尽量以 self:RemoveEvent(eventId, self.XXX) 的方式，如果用匿名函数，那么匿名函数的第一个参数为self自身）
+function BaseEvent:RemoveEvent(eventID, callback)
+    EventManager.RemoveEvent(eventID, callback, self)
+end
+
 --- ClearEvent 清理事件
 function BaseEvent:ClearEvent()
-    for event, _ in pairs(self.eventList) do
+    for event, _ in pairs(self.unityEventList) do
         event:RemoveAllListeners()
         event:Invoke()
     end
-    self.eventList = {}
+    self.unityEventList = {}
 end
 
 return BaseEvent

@@ -1,9 +1,9 @@
 ﻿// ================================================================================
 //
-//      作者  :   G Q
-//      时间  :   2022年10月09日 14:47:31
-//      类名  :   SpritesManager
-//      目的  :   XLua启动器，从这里开始进行与Lua端的交互的入口
+//      作 者  :   G Q
+//      时 间  :   2022年10月09日 14:47:31
+//      类 名  :   SpritesManager
+//      目 的  :   XLua启动器，从这里开始进行与Lua端的交互的入口
 //
 // ================================================================================
 
@@ -28,6 +28,8 @@ public class XLuaLauncher : MonoBehaviour
 
     private void Awake()
     {
+        HEventManager.DispatchEvent(HEventType.GameStart);
+
         if (Application.isEditor)
         {
             InitLuaScripts();
@@ -74,6 +76,8 @@ public class XLuaLauncher : MonoBehaviour
         // 此处开始进入Lua端
         luaEnv.DoString("require('Main')");
         luaEnv.DoString("OnAwake()");
+
+        HEventManager.DispatchEvent(HEventType.LuaStart);
     }
 
     private void InitLuaScripts()
@@ -132,5 +136,7 @@ public class XLuaLauncher : MonoBehaviour
         }
 
         luaEnv.Dispose();
+
+        HEventManager.DispatchEvent(HEventType.GameEnd);
     }
 }

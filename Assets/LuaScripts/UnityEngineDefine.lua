@@ -7,9 +7,6 @@
 UnityEngine = CS.UnityEngine
 
 Debug = UnityEngine.Debug
-Log = Debug.Log
-LogWarning = Debug.LogWarning
-LogError = Debug.LogError
 GameObject = UnityEngine.GameObject
 Transform = UnityEngine.Transform
 Input = UnityEngine.Input

@@ -9,6 +9,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.Networking;
 using XLua;
 //using System.Reflection;
 //using System.Linq;
@@ -45,7 +46,7 @@ public static class ExampleGenConfig
                 typeof(ParticleSystem),
                 typeof(SkinnedMeshRenderer),
                 typeof(Renderer),
-                typeof(WWW),
+                typeof(UnityWebRequest),
                 typeof(Light),
                 typeof(Mathf),
                 typeof(System.Collections.Generic.List<int>),

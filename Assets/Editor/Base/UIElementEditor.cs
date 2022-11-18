@@ -1,9 +1,9 @@
 ﻿// ================================================================================
 //
-//      作者  :   G Q
-//      时间  :   2022年11月16日 12:22:42
-//      类名  :   UIElementEditor
-//      目的  :   使UIElement使用起来更加便携简单
+//      作 者  :   G Q
+//      时 间  :   2022年11月16日 12:22:42
+//      类 名  :   UIElementEditor
+//      目 的  :   使UIElement使用起来更加便携简单
 //
 // ================================================================================
 
@@ -36,7 +36,7 @@ public class UIElementEditor : Editor
     /// 右键添加组件到UIElement上
     /// </summary>
     /// <param name="menuCommand"></param>
-    [MenuItem("CONTEXT/Component/AddDataElement", false, 10)]
+    [MenuItem("CONTEXT/Component/AddUIElement", false, 10)]
     private static void AddComponent(MenuCommand menuCommand)
     {
         Object component = menuCommand.context;
@@ -187,7 +187,7 @@ public class UIElementEditor : Editor
     private void DoReorderableListList()
     {
         //reorderableList.DoLayoutList();
-        float boxHeight = 17 + (reorderableList.count > 0 ? ((reorderableList.count + 1) * reorderableList.elementHeight) : 25);
+        float boxHeight = 4 + (reorderableList.count > 0 ? ((reorderableList.count + 1) * reorderableList.elementHeight) : 35);
         // 拖动区域
         Rect dragRect = GUILayoutUtility.GetRect(0f, boxHeight, GUILayout.ExpandWidth(true));
         GUI.Box(dragRect, "");

@@ -25,7 +25,7 @@ end
 function Class.CreateClass(className, superName)
     local class, super
     super = Class.GetClassByName(superName)
-    class = { __cname = className, __super = super }
+    class = { __className = className, __super = super }
     if (super) then
         setmetatable(class, { __index = Class.GetFromSuper })
     end

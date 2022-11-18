@@ -22,6 +22,23 @@ function TestWindow2:InitEvent()
 
     self:AddListener(self.btnOpen.onClick, self.ClickBtnOpen)
     self:AddListener(self.btnClose.onClick, self.ClickBtnClose)
+
+    self:AddListener(self.uiElements.btnAddEvent.onClick, function ()
+        self:AddEvent(EventID.TestEventId1, self.XXX)
+
+        --EventManager.AddEvent(EventID.TestEventId1, self.XXX, self)
+    end)
+
+    self:AddListener(self.uiElements.btnRemoveEvent.onClick, function ()
+        self:RemoveEvent(EventID.TestEventId1, self.XXX)
+
+        --EventManager.RemoveEvent(EventID.TestEventId1, self)
+    end)
+end
+
+function TestWindow2:XXX(args)
+    local a = self
+    LogError(args)
 end
 
 function TestWindow2:OnShowing()

@@ -6,7 +6,7 @@
 
 --- @class BaseWindow : GameObject
 --- @field protected __super BaseWindow 父类
---- @field protected __cname BaseWindow 类名
+--- @field protected __className BaseWindow 类名
 --- @field protected windowType BaseWindow 窗口类型（子类必须赋值）
 --- @field protected prefabPath BaseWindow 预制体路径（子类必须赋值）
 local BaseWindow = Class.CreateClass("BaseWindow", "GameObject")
@@ -49,7 +49,7 @@ end
 
 --- ClassName 获得类名
 function BaseWindow:ClassName()
-    return self.__cname
+    return self.__className
 end
 
 --- GetPrefabName 获得预制体名字
@@ -163,6 +163,7 @@ function BaseWindow:_Showed()
         self.showedCallback(self)
     end
     self.showedCallback = nil
+
 
     UIManager.UIShowed(self)
     self:OnShowed()

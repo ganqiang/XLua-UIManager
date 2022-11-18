@@ -5,11 +5,11 @@
 ---
 
 require("UnityEngineDefine")
+require("HUtils")
+require("Global")
 require("LuaEx")
 require("Class")
 require("UIManager")
 require("ResourceManager")
-
--- UI父节点
-_G.UIRoot = GameObject.Find("UICanvas").transform
-_G.Destroy = UnityEngine.Object.Destroy
+require("EventManager")
+require("EventID")
