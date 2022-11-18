@@ -1,0 +1,41 @@
+--- @class MainWindow : BaseWindow
+local MainWindow = Class.CreateClass("MainWindow", "BaseWindow")
+
+function MainWindow:New()
+    self.windowType = UIManager.WindowType.Window
+    self.prefabPath = "Window/MainWindow"
+end
+
+function MainWindow:OnInit()
+    self:Super().OnInit(self)
+end
+
+function MainWindow:OnShowing()
+    self:InitEvent()
+    self:InitData()
+    self:InitInfo()
+
+    self:Super().OnShowing(self)
+end
+
+function MainWindow:InitEvent()
+
+end
+
+function MainWindow:InitData()
+
+end
+
+function MainWindow:InitInfo()
+
+end
+
+function MainWindow:OnHide()
+    self:Super().OnHide(self)
+end
+
+function MainWindow:OnClose()
+    self:Super().OnClose(self)
+end
+
+return MainWindow
