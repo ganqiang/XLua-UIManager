@@ -10,6 +10,8 @@ local BaseEvent = Class.CreateClass("BaseEvent", "Object")
 function BaseEvent:New()
     -- 存储的所有Unity事件（按钮等）注册列表
     self.unityEventList = {}
+    -- 存储所有事件注册的列表
+    self.eventList = {}
 end
 
 --- AddListener 监听按钮事件
@@ -32,6 +34,15 @@ end
 --- @param eventID EventID 事件ID
 --- @param callback function 回调（写法尽量以 self:AddEvent(eventId, self.XXX) 的方式，如果用匿名函数，那么匿名函数的第一个参数为self自身）
 function BaseEvent:AddEvent(eventID, callback)
+    if (not self.eventList[eventID]) then
+        self.eventList[eventID] = {}
+    end
+
+    local className = self:ClassName()
+    if (not self.eventList[eventID][className]) then
+        self.eventList[eventID][className] = { uiClass = self, handle = callback }
+    end
+
     EventManager.AddEvent(eventID, callback, self)
 end
 
@@ -40,6 +51,17 @@ end
 --- @param callback function 回调（写法尽量以 self:RemoveEvent(eventId, self.XXX) 的方式，如果用匿名函数，那么匿名函数的第一个参数为self自身）
 function BaseEvent:RemoveEvent(eventID, callback)
     EventManager.RemoveEvent(eventID, callback, self)
+
+    if (HUtils.IsEmpty(self.eventList[eventID])) then
+        return
+    end
+
+    local className = self:ClassName()
+    if (not self.eventList[eventID][className]) then
+        return
+    end
+
+    self.eventList[eventID][className] = nil
 end
 
 --- ClearEvent 清理事件
@@ -53,6 +75,9 @@ end
 
 function BaseEvent:ClearEvent()
     -- TODO GQ 这里需要把通过 self:AddEvent 注册的事件记录下来，当界面关闭（生命周期结束）的时候，需要清理事件
+    for eventID, _ in pairs(self.eventList) do
+        self:RemoveEvent(eventID, nil)
+    end
 end
 
 return BaseEvent

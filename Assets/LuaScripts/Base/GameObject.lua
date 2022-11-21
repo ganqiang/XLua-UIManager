@@ -61,6 +61,8 @@ function GameObject:ClearGameObject()
         ResourceManager.Destroy(self.gameObject)
     end
     self.gameObject = nil
+
+    self.uiElements = {}
 end
 
 return GameObject

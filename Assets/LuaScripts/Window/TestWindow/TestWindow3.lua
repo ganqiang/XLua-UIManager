@@ -39,9 +39,9 @@ function TestWindow3:InitEvent()
     --    self.uiElements.title.text = args
     --end)
 
-    EventManager.AddEvent(EventID.TestEventId1, function(args, a)
+    self:AddEvent(EventID.TestEventId1, function(args, a)
         self.uiElements.title.text = a
-    end, self)
+    end)
 end
 
 function TestWindow3:InitData()
@@ -65,6 +65,9 @@ function TestWindow3:OnHide()
 end
 
 function TestWindow3:OnClose()
+    --self:RemoveEvent(EventID.TestEventId1, function(args, a)
+    --    self.uiElements.title.text = a
+    --end)
     self:Super().OnClose(self)
 end
 
